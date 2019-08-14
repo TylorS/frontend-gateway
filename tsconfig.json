@@ -1,0 +1,19 @@
+{
+  "extends": "./packages/tsconfig.base.json",
+  "compilerOptions": {
+    "declarationMap": false,
+    "composite": false,
+    "incremental": false,
+    "noEmit": true,
+    "jsx": "react",
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "include": [
+    "./packages/**/*.ts",
+    "./tools/**/*.ts",
+    "./*.ts"
+  ]
+}

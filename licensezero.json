@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "licensezero": [
+    {
+      "agentSignature": "d344038a03d82dca23c76d0da56dc9c365f8e78cde649d3a92c0600e9e93b1f1c876157d51e8a4006b30a6998e11f2d00bec3e9e1a39cc1c61c6647e1cc8e40e",
+      "license": {
+        "homepage": "https://github.com/TylorS/frontend-gateway",
+        "jurisdiction": "US-RI",
+        "name": "Tylor Steinberger",
+        "projectID": "3b1789e3-b1d1-4d32-a18d-ca340d4128d6",
+        "publicKey": "ff9b1c83a35987dcfbaa426b00388fbefc42560344b83c738dbe7c0d49937e39",
+        "terms": "parity",
+        "version": "6.0.0"
+      },
+      "licensorSignature": "02112b90cbc01aefa37cf28dd18163e1e1e36b6659ead005051e6bd926945310e935303feea65f1425fd08d041eb04e451bd3023e028d34e85789b0b8afe2605"
+    }
+  ]
+}

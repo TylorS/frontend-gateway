@@ -1,6 +1,8 @@
-# @typed/frontend-gateway
+# @typed/frontend-gateway (WIP)
 
 > Composable Frontends (AKA microfrontends) @ Scale
+
+> Come back soon for more :smile:
 
 Frontend gateway is your bullet-proof solution for managing feature-driven applications. 
 Our gateway can help tame your existing monolith incrementally and keeps your team from being stuck

@@ -21,12 +21,27 @@ function updateRootConfig(configName: string) {
   const rootTsConfig = getOrCreateJsonFile(rootTsConfigPath)
   const packagePaths = PACKAGES.map(pkg => `./${pkg}/${configName}`)
 
-  rootTsConfig.references = packagePaths.map(path => ({ path }))
+  rootTsConfig.references = packagePaths
+    .filter(x => isNotPrivate(x.replace(configName, '')))
+    .map(path => ({ path }))
   rootTsConfig.files = []
   delete rootTsConfig.include
   delete rootTsConfig.exclude
 
   fs.writeFileSync(rootTsConfigPath, JSON.stringify(rootTsConfig, null, '  ') + EOL)
+}
+
+function isNotPrivate(pkg: string) {
+  const pkgDirectory = path.join(sourceDirectory, pkg)
+  const packageJSONPath = path.join(pkgDirectory, 'package.json')
+
+  if (!fs.existsSync(packageJSONPath)) {
+    throw new Error(`Run 'npm init' in ${pkgDirectory} before running this script.`)
+  }
+
+  const packageJSONData = JSON.parse(fs.readFileSync(packageJSONPath).toString())
+
+  return !packageJSONData.private
 }
 
 function updatePackage(pkg: string) {
@@ -38,23 +53,29 @@ function updatePackage(pkg: string) {
   }
 
   const packageJSONData = JSON.parse(fs.readFileSync(packageJSONPath).toString())
+  const isPrivate = !!packageJSONData.private
   const typedDependencies = getTypedDependencies(packageJSONData)
   const tsconfigEsmPath = path.join(pkgDirectory, 'tsconfig.json')
   const tsconfigCjsPath = path.join(pkgDirectory, 'tsconfig.cjs.json')
 
-  updatePackageConfig(tsconfigEsmPath, typedDependencies, applyEsmDefaults)
-  updatePackageConfig(tsconfigCjsPath, typedDependencies, applyCommonjsDefaults)
+  updatePackageConfig(tsconfigEsmPath, typedDependencies, applyEsmDefaults, isPrivate)
+  updatePackageConfig(tsconfigCjsPath, typedDependencies, applyCommonjsDefaults, isPrivate)
 }
 
 function updatePackageConfig(
   configPath: string,
   typedDependencies: string[],
-  effects: (data: any) => void,
+  effects: (data: any, isPrivate: boolean) => void,
+  isPrivate: boolean,
 ) {
   console.log(`Updating TsConfig: ${configPath}...`)
   const data = getOrCreateJsonFile(configPath)
-  effects(data)
-  updateReferences(data, typedDependencies)
+  effects(data, isPrivate)
+
+  if (!isPrivate) {
+    updateReferences(data, typedDependencies)
+  }
+
   fs.writeFileSync(configPath, JSON.stringify(data, null, '  ') + EOL)
 }
 
@@ -66,7 +87,7 @@ function getOrCreateJsonFile(filePath: string) {
   return JSON.parse(fs.readFileSync(filePath).toString())
 }
 
-function applyEsmDefaults(tsconfig: any) {
+function applyEsmDefaults(tsconfig: any, isPrivate: boolean) {
   tsconfig.extends = '../tsconfig.base.json'
 
   tsconfig.compilerOptions = {
@@ -78,6 +99,11 @@ function applyEsmDefaults(tsconfig: any) {
     outDir: './esm',
   }
 
+  if (isPrivate) {
+    delete tsconfig.compilerOptions.composite
+    delete tsconfig.compilerOptions.incremental
+  }
+
   tsconfig.include = uniq([...(tsconfig.files || []), ...(tsconfig.include || []), 'source'])
 
   delete tsconfig.files
@@ -85,7 +111,7 @@ function applyEsmDefaults(tsconfig: any) {
   tsconfig.exclude = uniq([...(tsconfig.exclude || []), ...FILES_TO_EXCLUDE])
 }
 
-function applyCommonjsDefaults(tsconfig: any) {
+function applyCommonjsDefaults(tsconfig: any, isPrivate: boolean) {
   tsconfig.extends = '../tsconfig.base.json'
 
   tsconfig.compilerOptions = {
@@ -95,6 +121,11 @@ function applyCommonjsDefaults(tsconfig: any) {
     rootDir: './source',
     module: 'commonjs',
     outDir: 'cjs',
+  }
+
+  if (isPrivate) {
+    delete tsconfig.compilerOptions.composite
+    delete tsconfig.compilerOptions.incremental
   }
 
   tsconfig.include = uniq([...(tsconfig.files || []), ...(tsconfig.include || []), 'source'])

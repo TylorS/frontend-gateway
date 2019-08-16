@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./source",
+    "module": "commonjs",
+    "outDir": "cjs"
+  },
+  "include": [
+    "source"
+  ],
+  "exclude": [
+    "./cjs/**",
+    "./esm/**",
+    "./source/**/*.browser-test.ts",
+    "./source/**/*.test.ts",
+    "./umd/**"
+  ]
+}

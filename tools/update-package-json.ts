@@ -14,18 +14,23 @@ for (const pkg of PACKAGES) {
   console.log(`Updating ${packageJSONPath}...`)
 
   const packageJSONData = JSON.parse(fs.readFileSync(packageJSONPath).toString())
+
   delete packageJSONData.scripts
-  packageJSONData.main = './cjs/index.js'
-  packageJSONData.unpkg = './umd/index.js'
-  packageJSONData.module = './esm/index.js'
+  delete packageJSONData.type
+
+  if (!packageJSONData.private) {
+    packageJSONData.main = './cjs/index.js'
+    packageJSONData.unpkg = './umd/index.js'
+    packageJSONData.module = './esm/index.js'
+    packageJSONData.types = './esm/index.d.ts'
+    packageJSONData['main:ts'] = './source/index.ts'
+    packageJSONData.publishConfig = {
+      access: 'public',
+    }
+  }
+
   packageJSONData.license =
     'Parity Public Licence 3.0 <https://licensezero.com/ids/52afd698-c5c7-4034-b229-ef1243d4caeb/>'
-  delete packageJSONData.type
-  packageJSONData.types = './esm/index.d.ts'
-  packageJSONData['main:ts'] = './source/index.ts'
-  packageJSONData.publishConfig = {
-    access: 'public',
-  }
   packageJSONData.peerDependencies = {
     ...(packageJSONData.peerDependencies || {}),
     tslib: '^1.10.0',

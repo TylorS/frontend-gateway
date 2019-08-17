@@ -16,7 +16,7 @@
     "orchestrator"
   ],
   "author": "Tylor Steinberger <tlsteinberger167@gmail.com>",
-  "license": "Parity Public Licence 3.0",
+  "license": "Parity-6.0.0",
   "bugs": {
     "url": "https://github.com/TylorS/frontend-gateway/issues"
   },

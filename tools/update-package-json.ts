@@ -29,8 +29,7 @@ for (const pkg of PACKAGES) {
     }
   }
 
-  packageJSONData.license =
-    'Parity Public Licence 3.0 <https://licensezero.com/ids/52afd698-c5c7-4034-b229-ef1243d4caeb/>'
+  packageJSONData.license = 'Parity-6.0.0'
   packageJSONData.peerDependencies = {
     ...(packageJSONData.peerDependencies || {}),
     tslib: '^1.10.0',

@@ -48,7 +48,7 @@
     "@types/node": "12.7.2",
     "@types/yargs": "13.0.2",
     "lerna": "3.16.4",
-    "lint-staged": "9.2.1",
+    "lint-staged": "9.2.5",
     "prettier": "1.18.2",
     "rollup": "1.19.4",
     "rollup-plugin-commonjs": "10.0.2",

@@ -39,7 +39,7 @@
     "@typed/logic": "4.0.4",
     "@typed/objects": "4.0.3",
     "@typed/routing": "1.0.4",
-    "@typed/uuid": "3.0.4",
+    "@typed/uuid": "3.0.5",
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "cors": "2.8.5",

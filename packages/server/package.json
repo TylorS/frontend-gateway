@@ -35,7 +35,7 @@
     "@typed/env": "1.0.4",
     "@typed/http": "1.0.4",
     "@typed/lambda": "1.0.4",
-    "@typed/list": "4.0.4",
+    "@typed/list": "4.0.5",
     "@typed/logic": "4.0.4",
     "@typed/objects": "4.0.4",
     "@typed/routing": "1.0.4",

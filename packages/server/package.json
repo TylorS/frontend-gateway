@@ -28,7 +28,7 @@
     "@types/compression": "1.0.1",
     "@types/cors": "2.8.6",
     "@types/express": "4.17.2",
-    "pm2": "3.5.1",
+    "pm2": "3.5.2",
     "tslib": "1.10.0"
   },
   "dependencies": {

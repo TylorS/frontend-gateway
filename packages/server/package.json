@@ -38,7 +38,7 @@
     "@typed/list": "4.0.5",
     "@typed/logic": "4.0.5",
     "@typed/objects": "4.0.5",
-    "@typed/routing": "1.0.5",
+    "@typed/routing": "5.2.0",
     "@typed/uuid": "3.0.6",
     "body-parser": "1.19.0",
     "compression": "1.7.4",

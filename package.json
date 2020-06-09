@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@typed/test": "9.5.0",
-    "@types/node": "12.12.45",
+    "@types/node": "12.12.46",
     "@types/yargs": "13.0.9",
     "lerna": "3.22.1",
     "lint-staged": "9.5.0",

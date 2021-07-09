@@ -36,7 +36,7 @@
     "@typed/http": "1.0.5",
     "@typed/lambda": "1.0.5",
     "@typed/list": "4.0.5",
-    "@typed/logic": "4.0.5",
+    "@typed/logic": "6.5.4",
     "@typed/objects": "4.0.5",
     "@typed/routing": "1.0.5",
     "@typed/uuid": "3.0.6",

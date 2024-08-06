@@ -46,7 +46,7 @@
   "devDependencies": {
     "@typed/test": "9.5.0",
     "@types/node": "12.20.37",
-    "@types/yargs": "13.0.12",
+    "@types/yargs": "17.0.33",
     "lerna": "5.5.2",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",
@@ -66,6 +66,6 @@
     "tslint-no-circular-imports": "0.7.0",
     "tslint-plugin-prettier": "2.3.0",
     "typescript": "3.9.10",
-    "yargs": "14.2.3"
+    "yargs": "17.7.2"
   }
 }
